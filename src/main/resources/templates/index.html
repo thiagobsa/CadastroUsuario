@@ -1,0 +1,37 @@
+<!DOCTYPE>
+<html xmlns:th="http://thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+	<head>
+		<title>Cadastro de Usuarios</title></head>
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+	      <!--Import materialize.css-->
+	    <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
+	
+	      <!--Let browser know website is optimized for mobile-->
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<body>
+		<h1>Lista de Usuarios</h1>
+		<h3><a href="/cadastrarUsuario" class="waves-effect waves-light btn"><i class="material-icons left">border_color</i>Cadastrar Usuario</a></h3>
+			<table class="container">
+				<thead>
+					<tr>
+						<th>Nome</th>
+						<th>Email</th>
+						<th>Telefone</th>
+						<th>Senha</th>
+						<th>Deletar</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="cadastro: ${cadastros}">
+						<td><a th:href="${(#mvc.url('CC#detalhesUsuario').arg(0, cadastro.codigo)).build()}"><span th:text="${cadastro.nome}"></span></a></td>
+						<td><span th:text="${cadastro.email}"></span></td>
+						<td><span th:text="${cadastro.telefone}"></span></td>
+						<td><span th:text="${cadastro.senha}"></span></td>
+						<td><a class="waves-effect waves-light btn-small" th:href="${(#mvc.url('CC#deletarUsuario').arg(0, cadastro.codigo)).build()}"><i class="material-icons center">delete</i></a></td>
+					</tr>
+				</tbody>
+			</table>
+		<!--JavaScript at end of body for optimized loading-->
+      	<script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+	</body>
+</html>
